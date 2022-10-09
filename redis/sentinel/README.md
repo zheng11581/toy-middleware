@@ -100,3 +100,74 @@ appendonly yes
 ## R2 configuration
 
 As same as R1 
+
+## Check replication info
+
+```shell
+# redis-cli -h 192.168.3.205
+192.168.3.205:6379> auth 123456
+OK
+192.168.3.205:6379> info replication
+# Replication
+role:master
+connected_slaves:2
+slave0:ip=192.168.3.206,port=6379,state=online,offset=182,lag=0
+slave1:ip=192.168.3.207,port=6379,state=online,offset=182,lag=0
+master_replid:cc5f0546e282c4fdedb7ff554ed1d2a65053583d
+master_replid2:0000000000000000000000000000000000000000
+master_repl_offset:182
+second_repl_offset:-1
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:1
+repl_backlog_histlen:182
+
+# redis-cli -h 192.168.3.206
+192.168.3.206:6379> auth 123456
+OK
+192.168.3.206:6379> info replication
+# Replication
+role:slave
+master_host:192.168.3.205
+master_port:6379
+master_link_status:up
+master_last_io_seconds_ago:3
+master_sync_in_progress:0
+slave_repl_offset:294
+slave_priority:100
+slave_read_only:1
+connected_slaves:0
+master_replid:cc5f0546e282c4fdedb7ff554ed1d2a65053583d
+master_replid2:0000000000000000000000000000000000000000
+master_repl_offset:294
+second_repl_offset:-1
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:1
+repl_backlog_histlen:294
+
+# redis-cli -h 192.168.3.207
+192.168.3.207:6379> auth 123456
+OK
+192.168.3.207:6379> info replication
+# Replication
+role:slave
+master_host:192.168.3.205
+master_port:6379
+master_link_status:up
+master_last_io_seconds_ago:1
+master_sync_in_progress:0
+slave_repl_offset:350
+slave_priority:100
+slave_read_only:1
+connected_slaves:0
+master_replid:cc5f0546e282c4fdedb7ff554ed1d2a65053583d
+master_replid2:0000000000000000000000000000000000000000
+master_repl_offset:350
+second_repl_offset:-1
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:85
+repl_backlog_histlen:266
+
+```
