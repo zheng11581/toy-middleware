@@ -188,8 +188,13 @@ sentinel down-after-milliseconds mymaster 10000
 
 ```shell
 # 启动命令
-sentinel /root/redis-5.0.14/sentinel.conf
+redis-sentinel /root/redis-5.0.14/sentinel.conf
 ```
 
+## S2 configuration
+As same as S1
+
+## S3 configuration
+As same as S1
 
 
