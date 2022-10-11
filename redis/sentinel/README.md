@@ -197,4 +197,8 @@ As same as S1
 ## S3 configuration
 As same as S1
 
+## Test Failover
 
+```shell
+redis-cli -h 192.168.3.205 -a 123456 -p 6379 DEBUG sleep 30
+```
