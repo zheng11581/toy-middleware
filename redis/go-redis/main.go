@@ -122,6 +122,7 @@ func redisExample() {
 func redisExample2() {
 	ctx := context.Background()
 	if err := initClient(); err != nil {
+		fmt.Printf("Init client failed: %v\n", err)
 		return
 	}
 	zsetKey := "language_rank"
