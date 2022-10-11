@@ -171,3 +171,25 @@ repl_backlog_first_byte_offset:85
 repl_backlog_histlen:266
 
 ```
+
+## S1 configuration
+
+```shell
+# Copy conf/sentinel.conf /root/redis-5.0.14/sentinel.conf
+# Main keys:
+sentinel monitor [master-name] [redis-ip] [redis-port] [quorum]
+# 这行配置的意思是让sentinel监控某个master，如果quorum个sentinel节点同意该master不可达(不回复ping)，那么认为该master O_DOWN，准备启动failover
+
+sentinel down-after-milliseconds mymaster 10000
+# 上面配置表达的意思是如果超过10s得不到某个节点的应答，就认为该节点 S_DOWN
+```
+
+### Start sentinel
+
+```shell
+# 启动命令
+sentinel /root/redis-5.0.14/sentinel.conf
+```
+
+
+
